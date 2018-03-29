@@ -94,7 +94,7 @@ Partial Class Timer
         Me.Minutes.Name = "Minutes"
         Me.Minutes.Size = New System.Drawing.Size(88, 56)
         Me.Minutes.TabIndex = 3
-        Me.Minutes.Text = "00"
+        Me.Minutes.Text = "0"
         Me.Minutes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Hours
@@ -104,7 +104,7 @@ Partial Class Timer
         Me.Hours.Name = "Hours"
         Me.Hours.Size = New System.Drawing.Size(88, 56)
         Me.Hours.TabIndex = 4
-        Me.Hours.Text = "00"
+        Me.Hours.Text = "0"
         Me.Hours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Days
@@ -114,7 +114,7 @@ Partial Class Timer
         Me.Days.Name = "Days"
         Me.Days.Size = New System.Drawing.Size(88, 56)
         Me.Days.TabIndex = 5
-        Me.Days.Text = "00"
+        Me.Days.Text = "0"
         Me.Days.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'ProjectSelector
@@ -141,6 +141,18 @@ Partial Class Timer
         Me.HistoryBox.Name = "HistoryBox"
         Me.HistoryBox.Size = New System.Drawing.Size(268, 322)
         Me.HistoryBox.TabIndex = 8
+        '
+        'DayTimer
+        '
+        Me.DayTimer.Interval = 60000
+        '
+        'HourTimer
+        '
+        Me.HourTimer.Interval = 60000
+        '
+        'MinuteTimer
+        '
+        Me.MinuteTimer.Interval = 60000
         '
         'ProjectTimer
         '
