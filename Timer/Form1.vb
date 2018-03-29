@@ -26,6 +26,7 @@
             ProjectSelector.Items.Add(availableProjects(i))
         Next
 
+        ProjectSelector.Items.Add("New Project")
     End Sub
 
     Private Function FindWords(ByVal TextSearched As String, ByVal Paragraph As String) As Integer
@@ -81,14 +82,18 @@
         If ProjectSelector.SelectedItem = "Please Select" Then
 
         Else
-            GlobalVariables.CurrentTime = ReadIni.ReadIni(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Timer.ini", "Times", GlobalVariables.CurrentProject)
-            Dim times As String() = GlobalVariables.CurrentTime.Split(New Char() {","c})
-            Days.Text = times(0)
-            Hours.Text = times(1)
-            Minutes.Text = times(2)
-            HistoryBox.Text = "Selected Project: " + GlobalVariables.CurrentProject + Environment.NewLine + Environment.NewLine
+            If ProjectSelector.SelectedItem = "New" Then
+                MsgBox("Oopsie you cant do that yet")
+            Else
+                GlobalVariables.CurrentTime = ReadIni.ReadIni(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Timer.ini", "Times", GlobalVariables.CurrentProject)
+                Dim times As String() = GlobalVariables.CurrentTime.Split(New Char() {","c})
+                Days.Text = times(0)
+                Hours.Text = times(1)
+                Minutes.Text = times(2)
+                HistoryBox.Text = "Selected Project: " + GlobalVariables.CurrentProject + Environment.NewLine + Environment.NewLine
 
-            GetHistory()
+                GetHistory()
+            End If
         End If
 
     End Sub
