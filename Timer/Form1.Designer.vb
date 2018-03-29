@@ -26,18 +26,19 @@ Partial Class Timer
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Timer))
         Me.Author = New System.Windows.Forms.Label()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
-        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape2 = New Microsoft.VisualBasic.PowerPacks.LineShape()
+        Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.StartStop = New System.Windows.Forms.Button()
         Me.Minutes = New System.Windows.Forms.Label()
         Me.Hours = New System.Windows.Forms.Label()
         Me.Days = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ProjectSelector = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.HistoryBox = New System.Windows.Forms.TextBox()
         Me.DayTimer = New System.Windows.Forms.Timer(Me.components)
         Me.HourTimer = New System.Windows.Forms.Timer(Me.components)
         Me.MinuteTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.ProjectTimer = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Author
@@ -59,15 +60,6 @@ Partial Class Timer
         Me.ShapeContainer1.TabIndex = 1
         Me.ShapeContainer1.TabStop = False
         '
-        'LineShape1
-        '
-        Me.LineShape1.BorderColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LineShape1.Name = "LineShape1"
-        Me.LineShape1.X1 = 290
-        Me.LineShape1.X2 = 290
-        Me.LineShape1.Y1 = 10
-        Me.LineShape1.Y2 = 350
-        '
         'LineShape2
         '
         Me.LineShape2.BorderColor = System.Drawing.SystemColors.AppWorkspace
@@ -76,6 +68,15 @@ Partial Class Timer
         Me.LineShape2.X2 = 571
         Me.LineShape2.Y1 = 350
         Me.LineShape2.Y2 = 350
+        '
+        'LineShape1
+        '
+        Me.LineShape1.BorderColor = System.Drawing.SystemColors.AppWorkspace
+        Me.LineShape1.Name = "LineShape1"
+        Me.LineShape1.X1 = 290
+        Me.LineShape1.X2 = 290
+        Me.LineShape1.Y1 = 10
+        Me.LineShape1.Y2 = 350
         '
         'StartStop
         '
@@ -116,14 +117,14 @@ Partial Class Timer
         Me.Days.Text = "00"
         Me.Days.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'ComboBox1
+        'ProjectSelector
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(108, 21)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 21)
-        Me.ComboBox1.TabIndex = 6
-        Me.ComboBox1.Text = "None"
+        Me.ProjectSelector.FormattingEnabled = True
+        Me.ProjectSelector.Location = New System.Drawing.Point(108, 21)
+        Me.ProjectSelector.Name = "ProjectSelector"
+        Me.ProjectSelector.Size = New System.Drawing.Size(121, 21)
+        Me.ProjectSelector.TabIndex = 6
+        Me.ProjectSelector.Text = "Please Select"
         '
         'Label3
         '
@@ -142,6 +143,10 @@ Partial Class Timer
         Me.HistoryBox.Size = New System.Drawing.Size(268, 322)
         Me.HistoryBox.TabIndex = 8
         '
+        'ProjectTimer
+        '
+        Me.ProjectTimer.Enabled = True
+        '
         'Timer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -149,7 +154,7 @@ Partial Class Timer
         Me.ClientSize = New System.Drawing.Size(584, 378)
         Me.Controls.Add(Me.HistoryBox)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.ProjectSelector)
         Me.Controls.Add(Me.Days)
         Me.Controls.Add(Me.Hours)
         Me.Controls.Add(Me.Minutes)
@@ -173,10 +178,11 @@ Partial Class Timer
     Friend WithEvents Minutes As Label
     Friend WithEvents Hours As Label
     Friend WithEvents Days As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ProjectSelector As ComboBox
     Friend WithEvents Label3 As Label
     Friend WithEvents HistoryBox As TextBox
     Friend WithEvents DayTimer As Windows.Forms.Timer
     Friend WithEvents HourTimer As Windows.Forms.Timer
     Friend WithEvents MinuteTimer As Windows.Forms.Timer
+    Friend WithEvents ProjectTimer As Windows.Forms.Timer
 End Class
