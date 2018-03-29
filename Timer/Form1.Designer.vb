@@ -39,6 +39,10 @@ Partial Class Timer
         Me.HourTimer = New System.Windows.Forms.Timer(Me.components)
         Me.MinuteTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ProjectTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.NewProject = New System.Windows.Forms.Button()
+        Me.DeleteProject = New System.Windows.Forms.Button()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Author
@@ -158,11 +162,41 @@ Partial Class Timer
         '
         Me.ProjectTimer.Enabled = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.DeleteProject)
+        Me.GroupBox1.Controls.Add(Me.NewProject)
+        Me.GroupBox1.Location = New System.Drawing.Point(14, 210)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(258, 100)
+        Me.GroupBox1.TabIndex = 9
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Project Controls"
+        '
+        'NewProject
+        '
+        Me.NewProject.Location = New System.Drawing.Point(26, 42)
+        Me.NewProject.Name = "NewProject"
+        Me.NewProject.Size = New System.Drawing.Size(75, 23)
+        Me.NewProject.TabIndex = 0
+        Me.NewProject.Text = "New Project"
+        Me.NewProject.UseVisualStyleBackColor = True
+        '
+        'DeleteProject
+        '
+        Me.DeleteProject.Location = New System.Drawing.Point(152, 42)
+        Me.DeleteProject.Name = "DeleteProject"
+        Me.DeleteProject.Size = New System.Drawing.Size(82, 23)
+        Me.DeleteProject.TabIndex = 1
+        Me.DeleteProject.Text = "Delete Project"
+        Me.DeleteProject.UseVisualStyleBackColor = True
+        '
         'Timer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 378)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.HistoryBox)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ProjectSelector)
@@ -176,6 +210,7 @@ Partial Class Timer
         Me.MaximizeBox = False
         Me.Name = "Timer"
         Me.Text = "Timer"
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -196,4 +231,7 @@ Partial Class Timer
     Friend WithEvents HourTimer As Windows.Forms.Timer
     Friend WithEvents MinuteTimer As Windows.Forms.Timer
     Friend WithEvents ProjectTimer As Windows.Forms.Timer
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents DeleteProject As Button
+    Friend WithEvents NewProject As Button
 End Class

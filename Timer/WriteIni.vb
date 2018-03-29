@@ -8,4 +8,9 @@
         Dim Result As Integer = WritePrivateProfileString(Section, ParamName, ParamVal, iniFileName)
         Return Result
     End Function
+
+    Public Function deleteKeyFromIni(ByVal iniFileName As String, ByVal Section As String, ByVal ParamName As String)
+        Dim Result As String = WritePrivateProfileString(Section, ParamName, Nothing, iniFileName)
+        Return Result
+    End Function
 End Module

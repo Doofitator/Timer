@@ -25,8 +25,6 @@
             Dim availableProjects As String() = GlobalVariables.projects.Split(New Char() {","c})
             ProjectSelector.Items.Add(availableProjects(i))
         Next
-
-        ProjectSelector.Items.Add("New Project")
     End Sub
 
     Private Function FindWords(ByVal TextSearched As String, ByVal Paragraph As String) As Integer
@@ -45,8 +43,12 @@
     Private Sub ProjectTimer_Tick(sender As Object, e As EventArgs) Handles ProjectTimer.Tick
         If ProjectSelector.SelectedItem = "Please Select" Then
             StartStop.Enabled = False
+            DeleteProject.Enabled = False
+            NewProject.Enabled = True
         Else
             StartStop.Enabled = True
+            DeleteProject.Enabled = True
+            NewProject.Enabled = False
         End If
     End Sub
 
@@ -81,19 +83,22 @@
 
         If ProjectSelector.SelectedItem = "Please Select" Then
 
-        Else
-            If ProjectSelector.SelectedItem = "New" Then
-                MsgBox("Oopsie you cant do that yet")
-            Else
-                GlobalVariables.CurrentTime = ReadIni.ReadIni(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Timer.ini", "Times", GlobalVariables.CurrentProject)
-                Dim times As String() = GlobalVariables.CurrentTime.Split(New Char() {","c})
-                Days.Text = times(0)
-                Hours.Text = times(1)
-                Minutes.Text = times(2)
-                HistoryBox.Text = "Selected Project: " + GlobalVariables.CurrentProject + Environment.NewLine + Environment.NewLine
+            HistoryBox.Text = "Please select or create a Project."
+            Days.Text = 0
+            Hours.Text = 0
+            Minutes.Text = 0
 
-                GetHistory()
-            End If
+        Else
+
+            GlobalVariables.CurrentTime = ReadIni.ReadIni(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Timer.ini", "Times", GlobalVariables.CurrentProject)
+            Dim times As String() = GlobalVariables.CurrentTime.Split(New Char() {","c})
+            Days.Text = times(0)
+            Hours.Text = times(1)
+            Minutes.Text = times(2)
+            HistoryBox.Text = "Selected Project: " + GlobalVariables.CurrentProject + Environment.NewLine + Environment.NewLine
+
+            GetHistory()
+
         End If
 
     End Sub
@@ -108,9 +113,11 @@
 
         Next
 
-        For i = 0 To Entries.Length - 2
-            HistoryBox.Text += Entries(i) + Environment.NewLine
-        Next
+        If Not Entries Is Nothing Then
+            For i = 0 To Entries.Length - 2
+                HistoryBox.Text += Entries(i) + Environment.NewLine
+            Next
+        End If
     End Sub
 
     Private Sub MinuteTimer_Tick(sender As Object, e As EventArgs) Handles MinuteTimer.Tick
@@ -129,5 +136,40 @@
             Hours.Text = 0
             Days.Text += 1
         End If
+    End Sub
+
+    Private Sub NewProject_Click(sender As Object, e As EventArgs) Handles NewProject.Click
+Retry:
+        Dim NewProjectName As String = InputBox("Enter project name:", "New Project", "ProjectName")
+        If InStr(NewProjectName, " ") > 0 Then
+            MsgBox("That project name included spaces. Please use only alphanumerical characters.")
+            GoTo Retry
+        End If
+
+        Dim currentProjectsInIni As String = ReadIni.ReadIni(GlobalVariables.iniFile, "Projects", "list")
+        If InStr(currentProjectsInIni, "ERROR:") > 0 Then
+            currentProjectsInIni = ""
+        End If
+        WriteIni.writeIni(GlobalVariables.iniFile, "Projects", "list", currentProjectsInIni + NewProjectName + ",")
+
+        ProjectSelector.Items.Clear()
+        GlobalVariables.projects = ReadIni.ReadIni(GlobalVariables.iniFile, "Projects", "list")
+        PopulateComboBox()
+
+        WriteIni.writeIni(GlobalVariables.iniFile, "Times", NewProjectName, "0,0,0")
+        WriteIni.writeIni(GlobalVariables.iniFile, "History", NewProjectName, "")
+    End Sub
+
+    Private Sub DeleteProject_Click(sender As Object, e As EventArgs) Handles DeleteProject.Click
+        Dim toBeDeleted As String = ProjectSelector.SelectedItem.ToString
+        Dim projectsNow As String = Replace(GlobalVariables.projects, toBeDeleted + ",", "")
+
+        WriteIni.writeIni(GlobalVariables.iniFile, "Projects", "list", projectsNow)
+        WriteIni.deleteKeyFromIni(GlobalVariables.iniFile, "Times", toBeDeleted)
+        WriteIni.deleteKeyFromIni(GlobalVariables.iniFile, "History", toBeDeleted)
+
+        ProjectSelector.Items.Clear()
+        GlobalVariables.projects = ReadIni.ReadIni(GlobalVariables.iniFile, "Projects", "list")
+        PopulateComboBox()
     End Sub
 End Class
