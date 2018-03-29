@@ -124,7 +124,6 @@ Partial Class Timer
         Me.ProjectSelector.Name = "ProjectSelector"
         Me.ProjectSelector.Size = New System.Drawing.Size(121, 21)
         Me.ProjectSelector.TabIndex = 6
-        Me.ProjectSelector.Text = "Please Select"
         '
         'Label3
         '
