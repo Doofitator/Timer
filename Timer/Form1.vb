@@ -58,13 +58,15 @@
             DayTimer.Enabled = True
             HourTimer.Enabled = True
             MinuteTimer.Enabled = True
+            SecondTimer.Enabled = True
             HistoryBox.Text += "START: " + moment.ToString + Environment.NewLine
         Else
             DayTimer.Enabled = False
             HourTimer.Enabled = False
             MinuteTimer.Enabled = False
+            SecondTimer.Enabled = False
             HistoryBox.Text += "STOP: " + moment.ToString + Environment.NewLine
-            WriteIni.writeIni(GlobalVariables.iniFile, "Times", GlobalVariables.CurrentProject, Days.Text + "," + Hours.Text + "," + Minutes.Text)
+            WriteIni.writeIni(GlobalVariables.iniFile, "Times", GlobalVariables.CurrentProject, Days.Text + "," + Hours.Text + "," + Minutes.Text + "," + Seconds.Text)
 
             Dim History As String
             History = Replace(HistoryBox.Text, Environment.NewLine, ",").ToString
@@ -95,6 +97,7 @@
             Days.Text = times(0)
             Hours.Text = times(1)
             Minutes.Text = times(2)
+            Seconds.Text = times(3)
             HistoryBox.Text = "Selected Project: " + GlobalVariables.CurrentProject + Environment.NewLine + Environment.NewLine
 
             GetHistory()
@@ -121,7 +124,10 @@
     End Sub
 
     Private Sub MinuteTimer_Tick(sender As Object, e As EventArgs) Handles MinuteTimer.Tick
-        Minutes.Text += 1
+        If Seconds.Text = 60 Then
+            Seconds.Text = 0
+            Minutes.Text += 1
+        End If
     End Sub
 
     Private Sub HourTimer_Tick(sender As Object, e As EventArgs) Handles HourTimer.Tick
@@ -171,5 +177,9 @@ Retry:
         ProjectSelector.Items.Clear()
         GlobalVariables.projects = ReadIni.ReadIni(GlobalVariables.iniFile, "Projects", "list")
         PopulateComboBox()
+    End Sub
+
+    Private Sub SecondTimer_Tick(sender As Object, e As EventArgs) Handles SecondTimer.Tick
+        Seconds.Text += 1
     End Sub
 End Class

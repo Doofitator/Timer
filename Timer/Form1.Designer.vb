@@ -40,8 +40,14 @@ Partial Class Timer
         Me.MinuteTimer = New System.Windows.Forms.Timer(Me.components)
         Me.ProjectTimer = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.NewProject = New System.Windows.Forms.Button()
         Me.DeleteProject = New System.Windows.Forms.Button()
+        Me.NewProject = New System.Windows.Forms.Button()
+        Me.Seconds = New System.Windows.Forms.Label()
+        Me.SecondTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -84,7 +90,7 @@ Partial Class Timer
         '
         'StartStop
         '
-        Me.StartStop.Location = New System.Drawing.Point(103, 142)
+        Me.StartStop.Location = New System.Drawing.Point(104, 161)
         Me.StartStop.Name = "StartStop"
         Me.StartStop.Size = New System.Drawing.Size(75, 23)
         Me.StartStop.TabIndex = 2
@@ -94,19 +100,19 @@ Partial Class Timer
         'Minutes
         '
         Me.Minutes.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Minutes.Location = New System.Drawing.Point(195, 57)
+        Me.Minutes.Location = New System.Drawing.Point(142, 57)
         Me.Minutes.Name = "Minutes"
-        Me.Minutes.Size = New System.Drawing.Size(88, 56)
+        Me.Minutes.Size = New System.Drawing.Size(59, 56)
         Me.Minutes.TabIndex = 3
         Me.Minutes.Text = "0"
-        Me.Minutes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Minutes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Hours
         '
         Me.Hours.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Hours.Location = New System.Drawing.Point(101, 57)
+        Me.Hours.Location = New System.Drawing.Point(77, 57)
         Me.Hours.Name = "Hours"
-        Me.Hours.Size = New System.Drawing.Size(88, 56)
+        Me.Hours.Size = New System.Drawing.Size(62, 56)
         Me.Hours.TabIndex = 4
         Me.Hours.Text = "0"
         Me.Hours.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -114,9 +120,9 @@ Partial Class Timer
         'Days
         '
         Me.Days.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Days.Location = New System.Drawing.Point(7, 57)
+        Me.Days.Location = New System.Drawing.Point(0, 57)
         Me.Days.Name = "Days"
-        Me.Days.Size = New System.Drawing.Size(88, 56)
+        Me.Days.Size = New System.Drawing.Size(68, 56)
         Me.Days.TabIndex = 5
         Me.Days.Text = "0"
         Me.Days.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -173,15 +179,6 @@ Partial Class Timer
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Project Controls"
         '
-        'NewProject
-        '
-        Me.NewProject.Location = New System.Drawing.Point(26, 42)
-        Me.NewProject.Name = "NewProject"
-        Me.NewProject.Size = New System.Drawing.Size(75, 23)
-        Me.NewProject.TabIndex = 0
-        Me.NewProject.Text = "New Project"
-        Me.NewProject.UseVisualStyleBackColor = True
-        '
         'DeleteProject
         '
         Me.DeleteProject.Location = New System.Drawing.Point(152, 42)
@@ -191,11 +188,79 @@ Partial Class Timer
         Me.DeleteProject.Text = "Delete Project"
         Me.DeleteProject.UseVisualStyleBackColor = True
         '
+        'NewProject
+        '
+        Me.NewProject.Location = New System.Drawing.Point(26, 42)
+        Me.NewProject.Name = "NewProject"
+        Me.NewProject.Size = New System.Drawing.Size(75, 23)
+        Me.NewProject.TabIndex = 0
+        Me.NewProject.Text = "New Project"
+        Me.NewProject.UseVisualStyleBackColor = True
+        '
+        'Seconds
+        '
+        Me.Seconds.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Seconds.Location = New System.Drawing.Point(207, 57)
+        Me.Seconds.Name = "Seconds"
+        Me.Seconds.Size = New System.Drawing.Size(65, 56)
+        Me.Seconds.TabIndex = 10
+        Me.Seconds.Text = "0"
+        Me.Seconds.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'SecondTimer
+        '
+        Me.SecondTimer.Interval = 1000
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(28, 113)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(31, 13)
+        Me.Label1.TabIndex = 11
+        Me.Label1.Text = "Days"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(90, 113)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.TabIndex = 12
+        Me.Label2.Text = "Hours"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(149, 113)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(44, 13)
+        Me.Label4.TabIndex = 13
+        Me.Label4.Text = "Minutes"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(211, 113)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(49, 13)
+        Me.Label5.TabIndex = 14
+        Me.Label5.Text = "Seconds"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'Timer
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(584, 378)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Seconds)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.HistoryBox)
         Me.Controls.Add(Me.Label3)
@@ -234,4 +299,10 @@ Partial Class Timer
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DeleteProject As Button
     Friend WithEvents NewProject As Button
+    Friend WithEvents Seconds As Label
+    Friend WithEvents SecondTimer As Windows.Forms.Timer
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
 End Class
