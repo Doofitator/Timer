@@ -162,7 +162,7 @@ Retry:
         GlobalVariables.projects = ReadIni.ReadIni(GlobalVariables.iniFile, "Projects", "list")
         PopulateComboBox()
 
-        WriteIni.writeIni(GlobalVariables.iniFile, "Times", NewProjectName, "0,0,0")
+        WriteIni.writeIni(GlobalVariables.iniFile, "Times", NewProjectName, "0,0,0,0")
         WriteIni.writeIni(GlobalVariables.iniFile, "History", NewProjectName, "")
     End Sub
 
